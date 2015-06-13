@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613011347) do
+ActiveRecord::Schema.define(version: 20150613034127) do
 
   create_table "account_histories", force: :cascade do |t|
     t.integer  "account_id"
@@ -53,6 +53,12 @@ ActiveRecord::Schema.define(version: 20150613011347) do
 
   add_index "blogs", ["user_id"], name: "index_blogs_on_user_id"
 
+  create_table "employees", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -60,6 +66,22 @@ ActiveRecord::Schema.define(version: 20150613011347) do
   end
 
   create_table "physicians", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+
+  create_table "products", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
